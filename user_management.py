@@ -65,3 +65,11 @@ def save_user(self, username, password):
 
     messagebox.showinfo("User Added", f"User {username} added successfully")
     self.create_user_window.destroy()    # Close the window after adding user
+
+
+class user():
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    
