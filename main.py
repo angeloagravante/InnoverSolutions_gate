@@ -1,7 +1,7 @@
 import tkinter as tk
 #from login import authenticate  # Import the login function
-from user_management import *  # Import the home function
-from home import home  # Import the home function
+from scripts.user_management import *  # Import the home function
+from scripts.home import home  # Import the home function
 # Function to verify login
 def login():
     username = entry_username.get()
