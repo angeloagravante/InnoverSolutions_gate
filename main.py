@@ -10,7 +10,7 @@ def login():
 
     user(username,password)
     
-    if user.authenticate(username, password):  # Call function from login.py
+    if user.authenticate():  # Call function from login.py
         login_frame.pack_forget()  # Hide login screen
         show_dashboard()  # Show dashboard
 
