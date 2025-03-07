@@ -8,7 +8,7 @@ def check_database():
     if not os.path.exists("users.db"):
         conn = sqlite3.connect("users.db")
         c = conn.cursor()
-        c.execute("CREATE TABLE users (username TEXT PRIMARY KEY, password TEXT)")
+        c.execute("CREATE TABLE users (username TEXT PRIMARY KEY, hash_password TEXT, salt TEXT)")
         conn.commit()
         conn.close()
 
@@ -82,13 +82,21 @@ class user:
 
     def set_password(self, password):
         self.password = password
+        
+    # Function to salt and hash a password
+    def hash_password(password):
+    salt = os.urandom(16)
+    salted_password = password.encode('utf-8') + salt
+    hashed_password = hashlib.sha256(salted_password).hexdigest()
+    return salt.hex(), hashed_password
 
     def insert_user(self):
         conn = sqlite3.connect("users.db")
         c = conn.cursor()
 
         try:
-            c.execute("INSERT INTO users VALUES (?, ?)", (self.username, self.password))
+            salt, hashed_password = hash_password(self.password)
+            c.execute("INSERT INTO users VALUES (?, ?)", (self.username,hashed_password, salt ))
             conn.commit()
         except sqlite3.IntegrityError:
             messagebox.showerror("User Exists", f"User {self.username} already exists")
@@ -105,10 +113,18 @@ class user:
         self.delete_user_window.geometry("300x300") # Set window size 
     
     #return true or false if user exists    
-    def authenticate_user(self):
+    def authenticate(self, username, password):
         conn = sqlite3.connect("users.db")
         c = conn.cursor()
-        c.execute("SELECT * FROM users WHERE username=? AND password=?", (self.username, self.password))
+        
+        c.execute("SELECT hash_password, salt FROM users WHERE username=?", (self.username))
         user = c.fetchone()
         conn.close()
-        return user
+
+        if user:
+            stored_hash_password, stored_salt = user
+            salted_password = password.encode('utf-8') + bytes.fromhex(stored_salt)
+            hashed_password = hashlib.sha256(salted_password).hexdigest()
+            if hashed_password == stored_hash_password:
+                    return True
+        return False
