@@ -66,10 +66,49 @@ def save_user(self, username, password):
     messagebox.showinfo("User Added", f"User {username} added successfully")
     self.create_user_window.destroy()    # Close the window after adding user
 
-
-class user():
-    def __init__(self, username, password):
+class user:
+    def init(self, username, password):
         self.username = username
         self.password = password
 
+    def get_username(self):
+        return self.username
     
+    def get_password(self):
+        return self.password
+    
+    def set_username(self, username):
+        self.username = username
+
+    def set_password(self, password):
+        self.password = password
+
+    def insert_user(self):
+        conn = sqlite3.connect("users.db")
+        c = conn.cursor()
+
+        try:
+            c.execute("INSERT INTO users VALUES (?, ?)", (self.username, self.password))
+            conn.commit()
+        except sqlite3.IntegrityError:
+            messagebox.showerror("User Exists", f"User {self.username} already exists")
+            return
+        
+        # close the connection
+        conn.close()
+
+        messagebox.showinfo("User Added", f"User {self.username} added successfully")
+
+    def delete_user(self):
+        self.delete_user_window = tk.Toplevel()
+        self.delete_user_window.title("Delete User")
+        self.delete_user_window.geometry("300x300") # Set window size 
+    
+    #return true or false if user exists    
+    def authenticate_user(self):
+        conn = sqlite3.connect("users.db")
+        c = conn.cursor()
+        c.execute("SELECT * FROM users WHERE username=? AND password=?", (self.username, self.password))
+        user = c.fetchone()
+        conn.close()
+        return user
