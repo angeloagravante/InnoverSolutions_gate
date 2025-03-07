@@ -26,7 +26,7 @@ def show_content(section):
     label = tk.Label(content_frame, text=f"Welcome to {section}", font=("Arial", 16), bg="white")
     label.pack(pady=50)
 
-# Create main window
+# Create main window instance
 root = tk.Tk()
 root.title("Automatic Gate Boom Barrier System")
 root.geometry("600x400")
