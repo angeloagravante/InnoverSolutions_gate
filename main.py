@@ -1,13 +1,16 @@
 import tkinter as tk
-#from login import authenticate  # Import the login function
+from scripts.user_management import user  # Import the login function
 from scripts.user_management import *  # Import the home function
 from scripts.home import home  # Import the home function
+
 # Function to verify login
 def login():
     username = entry_username.get()
     password = entry_password.get()
+
+    User = user(username,password)
     
-    if authenticate(username, password):  # Call function from login.py
+    if User.authenticate():  # Call function from login.py
         login_frame.pack_forget()  # Hide login screen
         show_dashboard()  # Show dashboard
 
@@ -54,8 +57,8 @@ btn_login.pack(pady=10)
 
 # create a TK hyperlink to add a user
 #btn_add_user = tk.Button(login_frame, text="Add User", command=add_user)
-btn_add_user = tk.Button(login_frame, text="Add User", command=lambda: add_user(login_frame, root))
-btn_add_user.pack(pady=10)
+#btn_add_user = tk.Button(login_frame, text="Add User", command=lambda: add_user(login_frame, root))
+#btn_add_user.pack(pady=10)
 
 
 # --------- DASHBOARD SCREEN (Hidden initially) ---------
