@@ -7,8 +7,10 @@ from scripts.home import home  # Import the home function
 def login():
     username = entry_username.get()
     password = entry_password.get()
+
+    user(username,password)
     
-    if user(username, password):  # Call function from login.py
+    if user.authenticate(username, password):  # Call function from login.py
         login_frame.pack_forget()  # Hide login screen
         show_dashboard()  # Show dashboard
 
