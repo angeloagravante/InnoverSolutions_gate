@@ -5,14 +5,6 @@ import sqlite3
 import os
 import hashlib
 
-def check_database():
-    if not os.path.exists("users.db"):
-        conn = sqlite3.connect("users.db")
-        c = conn.cursor()
-        c.execute("CREATE TABLE users (username TEXT PRIMARY KEY, hash_password TEXT, salt TEXT)")
-        conn.commit()
-        conn.close()
-
 def user_management_frame(parent):
     frame = ttk.Frame(parent)
     ttk.Label(frame, text="User Management Section").pack(pady=20)
