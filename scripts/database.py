@@ -30,5 +30,3 @@ def check_table():
         raise NoUsers("No users found in the database")
     else:
         print("Users found in the database")
-        
-    return users
