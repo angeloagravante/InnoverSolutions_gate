@@ -74,11 +74,17 @@ def show_content(section):
 def logout():
     global dashboard_frame  # Ensure we can access and destroy it
 
-    if dashboard_frame:
-        dashboard_frame.destroy()  # Remove the dashboard
+    boolLogout = messagebox.askyesno("Are you sure you want to logout?", "Are you sure you want to logout?")
 
-    login_screen()  # Show the login screen again
-    root.update_idletasks()  # Force UI update
+    if boolLogout:
+        if dashboard_frame:
+            dashboard_frame.destroy()  # Remove the dashboard
+
+        login_screen()  # Show the login screen again
+        root.update_idletasks()  # Force UI update
+    else:
+        return
+
 
 # Function to display settings
 def settings():
@@ -99,8 +105,8 @@ def settings():
             btn_add_user = tk.Button(content_frame, text="Add User", command=lambda: add_user(content_frame))
             btn_add_user.pack(pady=5)
 
-            btn_manage_user = tk.Button(content_frame, text="Manage User", command=manage_user)
-            btn_manage_user.pack(pady=5)
+            #btn_manage_user = tk.Button(content_frame, text="Manage User", command=manage_user)
+            #btn_manage_user.pack(pady=5)
 
 def login_screen():
     login_frame = tk.Frame(root)

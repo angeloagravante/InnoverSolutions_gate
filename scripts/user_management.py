@@ -34,6 +34,14 @@ def add_user(parent):
     entry_password = tk.Entry(parent, show="*")  # Hide password
     entry_password.pack(pady=5)
 
+    tk.Label(parent, text="Confirm Password:").pack()
+    entry_password = tk.Entry(parent, show="*")  # Hide password
+    entry_password.pack(pady=5)
+
+    if entry_password != entry_password:
+        messagebox.showerror("Password Mismatch", "Passwords do not match")
+        return
+
     OK = tk.Button(parent, text="OK", command=lambda: user(entry_username.get(), entry_password.get()).insert_user())
     OK.pack(pady=10)
 
