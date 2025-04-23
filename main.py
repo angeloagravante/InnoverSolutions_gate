@@ -1,12 +1,22 @@
 import tkinter as tk
 import exceptions as ex
 import scripts.database as db
+import threading
+import serial
 #import scripts.user_management as user
 
 from scripts.database import *
 from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
 from exceptions import *
+
+# ------------------- SERIAL SETUP -------------------
+try:
+    ser = serial.Serial('/dev/cu.usbmodem1401', 9600, timeout=1)  # Adjust port as needed
+except serial.SerialException:
+    print("Serial connection failed. Check your device.")
+    ser = None  # Ensure the program doesn't crash if serial fails
+
 
 # Function to verify login
 def login(login_frame, username, password):
@@ -20,6 +30,21 @@ def login(login_frame, username, password):
             if isinstance(widget, tk.Label) and widget.cget("text") == "Invalid username or password":
                 return 
         tk.Label(login_frame, text="Invalid username or password", fg="red").pack()
+
+# ------------------- SERIAL READER THREAD -------------------
+def read_serial():
+    """ Continuously listens for serial input and updates UI. """
+    while True:
+        if ser and ser.in_waiting > 0:
+            data = ser.readline().decode('utf-8').strip()
+            if data == "BUTTON_PRESSED":
+                root.after(0, open_gate)  # Update UI from main thread
+
+# ------------------- UI UPDATE ON BUTTON PRESS -------------------
+def open_gate():
+    """ Trigger gate opening event in GUI. """
+    messagebox.showinfo("Gate Access", "Button Pressed! Gate Opening...")
+    print("Gate Open Signal Received")
 
 # Function to show dashboard after login
 def show_dashboard():
@@ -139,6 +164,10 @@ except Exception as e:
 
 # --------- LOGIN SCREEN ---------
 login_screen()
+
+# Start Serial Thread
+serial_thread = threading.Thread(target=read_serial, daemon=True)
+serial_thread.start()
 
 # Run Tkinter event loop
 root.mainloop()
