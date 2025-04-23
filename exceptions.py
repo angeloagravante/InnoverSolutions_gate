@@ -16,6 +16,15 @@ class NoUsers(AppError):
     """Exception for no users found in the database."""
     def __init__(self, message="No users found in the database"):
         super().__init__(message)
+class ArduinoError(Exception):
+    """Base class for Arduino"""
+    def __init__(self, message="Arduino connection failed"):
+        super().__init__(message)
+class SerialError(ArduinoError):
+    """Exception for serial port errors."""
+    def __init__(self, message="Serial port connection failed"):
+        super().__init__(message)
+        
 
 # Using the custom exceptions
 #try:

@@ -21,23 +21,28 @@ def user_management_frame(parent):
     return frame
 
 
-def add_user(self, parent):
-    #self.create_user_window = tk.Toplevel(parent)  # Parent is login_frame
-    #self.create_user_window.title("Add User")
-    self.create_user_window = tk.Toplevel()
-    self.create_user_window.title("Add User")
-    self.create_user_window.geometry("300x300")
-    
-    tk.Label(self, text="Add User", font=("Arial", 18, "bold")).pack(pady=10)
-    tk.Label(self, text="Username:").pack()
-    entry_username = tk.Entry(self.create_user_window)
+def add_user(parent):
+    for widget in parent.winfo_children():
+        widget.destroy()
+
+    tk.Label(parent, text="Add User", font=("Arial", 18, "bold")).pack(pady=10)
+    tk.Label(parent, text="Username:").pack()
+    entry_username = tk.Entry(parent)
     entry_username.pack(pady=5)
 
-    tk.Label(self.create_user_window, text="Password:").pack()
-    entry_password = tk.Entry(self.create_user_window, show="*")  # Hide password
+    tk.Label(parent, text="Password:").pack()
+    entry_password = tk.Entry(parent, show="*")  # Hide password
     entry_password.pack(pady=5)
 
-    OK = tk.Button(self.create_user_window, text="OK", command=lambda: user(entry_username.get(), entry_password.get()).insert_user())
+    tk.Label(parent, text="Confirm Password:").pack()
+    entry_password = tk.Entry(parent, show="*")  # Hide password
+    entry_password.pack(pady=5)
+
+    if entry_password != entry_password:
+        messagebox.showerror("Password Mismatch", "Passwords do not match")
+        return
+
+    OK = tk.Button(parent, text="OK", command=lambda: user(entry_username.get(), entry_password.get()).insert_user())
     OK.pack(pady=10)
 
 class user:

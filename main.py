@@ -1,11 +1,22 @@
 import tkinter as tk
 import exceptions as ex
 import scripts.database as db
+import threading
+import serial
+#import scripts.user_management as user
 
 from scripts.database import *
-from scripts.user_management import user  # Import user class
+from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
 from exceptions import *
+
+# ------------------- SERIAL SETUP -------------------
+try:
+    ser = serial.Serial('/dev/cu.usbmodem1401', 9600, timeout=1)  # Adjust port as needed
+except serial.SerialException:
+    print("Serial connection failed. Check your device.")
+    ser = None  # Ensure the program doesn't crash if serial fails
+
 
 # Function to verify login
 def login(login_frame, username, password):
@@ -20,6 +31,21 @@ def login(login_frame, username, password):
                 return 
         tk.Label(login_frame, text="Invalid username or password", fg="red").pack()
 
+# ------------------- SERIAL READER THREAD -------------------
+def read_serial():
+    """ Continuously listens for serial input and updates UI. """
+    while True:
+        if ser and ser.in_waiting > 0:
+            data = ser.readline().decode('utf-8').strip()
+            if data == "BUTTON_PRESSED":
+                root.after(0, open_gate)  # Update UI from main thread
+
+# ------------------- UI UPDATE ON BUTTON PRESS -------------------
+def open_gate():
+    """ Trigger gate opening event in GUI. """
+    messagebox.showinfo("Gate Access", "Button Pressed! Gate Opening...")
+    print("Gate Open Signal Received")
+
 # Function to show dashboard after login
 def show_dashboard():
     global dashboard_frame, content_frame  # Make dashboard_frame accessible to logout()
@@ -31,6 +57,10 @@ def show_dashboard():
     sidebar = tk.Frame(dashboard_frame, bg="#2C3E50", width=150, height=400)
     sidebar.pack(side="left", fill="y")
 
+    # Main Content Area
+    content_frame = tk.Frame(dashboard_frame, bg="white", width=450, height=400)
+    content_frame.pack(side="right", fill="both", expand=True)
+
     # Sidebar Buttons
     sections = ["Home", "Profile", "Settings", "Logout"]
 
@@ -38,36 +68,70 @@ def show_dashboard():
         btn = tk.Button(
             sidebar, 
             text=section, 
-            fg="white", 
+            #fg="white", 
             bg="#34495E",
             font=("Arial", 12),
-            command=(lambda s=section: home() if s == "Home" else show_content(s))  # Fix function call
+            command=lambda s=section: show_content(s)  # Dynamically pass section
         )
         btn.pack(fill="x", pady=5, padx=10)
 
         if section == "Logout":
-            btn.config(command=logout)
-
-    # Main Content Area
-    content_frame = tk.Frame(dashboard_frame, bg="white", width=450, height=400)
-    content_frame.pack(side="right", fill="both", expand=True)
+            btn.configure(command=logout)   
+        
+        if section == "Settings":
+            btn.configure(command=settings)
 
     # Default content
-    show_content("Home")
+    show_content("Home")  # Ensure home section loads first
 
 # Function to update content area
 def show_content(section):
     for widget in content_frame.winfo_children():
-        widget.destroy()
-    
-    label = tk.Label(content_frame, text=f"Welcome to {section}", font=("Arial", 16), bg="white")
-    label.pack(pady=50)
+        widget.destroy()  # Clear previous content
+
+    if section == "Home":
+        home(content_frame)  # Pass content_frame as parent to home function
+    else:
+        label = tk.Label(content_frame, text=f"Welcome to {section}", font=("Arial", 16), bg="white")
+        label.pack(pady=50)
 
 # Function to logout
 def logout():
-    global dashboard_frame
-    dashboard_frame.pack_forget()
-    login_screen()  # Show login screen again
+    global dashboard_frame  # Ensure we can access and destroy it
+
+    boolLogout = messagebox.askyesno("Are you sure you want to logout?", "Are you sure you want to logout?")
+
+    if boolLogout:
+        if dashboard_frame:
+            dashboard_frame.destroy()  # Remove the dashboard
+
+        login_screen()  # Show the login screen again
+        root.update_idletasks()  # Force UI update
+    else:
+        return
+
+
+# Function to display settings
+def settings():
+    for widget in content_frame.winfo_children():
+        widget.destroy()  # Clear previous content
+
+    label = tk.Label(content_frame, text="Settings", font=("Arial", 16), bg="white")
+    label.pack(pady=10)
+
+    # Create sections/categories
+    categories = ["User Management"]
+
+    for category in categories:
+        category_label = tk.Label(content_frame, text=category, font=("Arial", 14, "bold"), bg="white")
+        category_label.pack(pady=5)
+
+        if category == "User Management":
+            btn_add_user = tk.Button(content_frame, text="Add User", command=lambda: add_user(content_frame))
+            btn_add_user.pack(pady=5)
+
+            #btn_manage_user = tk.Button(content_frame, text="Manage User", command=manage_user)
+            #btn_manage_user.pack(pady=5)
 
 def login_screen():
     login_frame = tk.Frame(root)
@@ -100,6 +164,10 @@ except Exception as e:
 
 # --------- LOGIN SCREEN ---------
 login_screen()
+
+# Start Serial Thread
+serial_thread = threading.Thread(target=read_serial, daemon=True)
+serial_thread.start()
 
 # Run Tkinter event loop
 root.mainloop()
