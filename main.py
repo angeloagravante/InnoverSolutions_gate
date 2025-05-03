@@ -54,11 +54,11 @@ def show_dashboard():
     dashboard_frame.pack(fill="both", expand=True)
 
     # Sidebar Frame
-    sidebar = tk.Frame(dashboard_frame, bg="#2C3E50", width=150, height=400)
+    sidebar = tk.Frame(dashboard_frame, width=150, height=400)
     sidebar.pack(side="left", fill="y")
 
     # Main Content Area
-    content_frame = tk.Frame(dashboard_frame, bg="white", width=450, height=400)
+    content_frame = tk.Frame(dashboard_frame, width=450, height=400)
     content_frame.pack(side="right", fill="both", expand=True)
 
     # Sidebar Buttons
@@ -68,8 +68,8 @@ def show_dashboard():
         btn = tk.Button(
             sidebar, 
             text=section, 
-            #fg="white", 
-            bg="#34495E",
+            fg="black", 
+            bg="black",
             font=("Arial", 12),
             command=lambda s=section: show_content(s)  # Dynamically pass section
         )
@@ -140,10 +140,12 @@ def login_screen():
     tk.Label(login_frame, text="Login", font=("Arial", 18, "bold")).pack(pady=10)
     tk.Label(login_frame, text="Username:").pack()
     entry_username = tk.Entry(login_frame)
+    entry_username.insert(0, "admin")  # Auto-populate with "admin"
     entry_username.pack(pady=5)
 
     tk.Label(login_frame, text="Password:").pack()
     entry_password = tk.Entry(login_frame, show="*")  # Hide password
+    entry_password.insert(0, "admin")  # Auto-populate with "admin"
     entry_password.pack(pady=5)
 
     btn_login = tk.Button(login_frame, text="Login", command=lambda: login(login_frame, entry_username.get(), entry_password.get()))

@@ -8,28 +8,53 @@ from exceptions import *
 # Create an instance of the Arduino class
 Arduino = arduino_module.Arduino('/dev/ttyUSB0')
 
+# Example usage: Call the home function with a valid parent (e.g., a Tk instance)
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.geometry("400x400")  # Set window size
+    home(root)
+    root.mainloop()
+
 def home(parent):
     """Function to display Home section with two buttons."""
+    # Clear the parent frame
+    
     for widget in parent.winfo_children():  # Clear previous widgets
         widget.destroy()
 
-    tk.Label(parent, text="Welcome to Home", font=("Arial", 16)).pack(pady=10)
+    # Ensure the parent uses grid geometry manager consistently
+    parent.grid_propagate(False)
 
-    def send_data_to_arduino():
-        try:
-            Arduino.connect()
-            Arduino.send_data("some data")
-            response = Arduino.receive_data()
-            print(f"Response from Arduino: {response}")
-            if response == "true":
-                btn1.config(text="Open")
-            else:
-                btn1.config(text="Closed")
-        except ex.ArduinoError as e:
-            print(f"Error: {e}")
+    # Add a label on the top
+    tk.Label(parent, text="Welcome to Main Section", font=("Arial", 16)).grid(row=0, column=0, columnspan=3, pady=5)
 
-    btn1 = tk.Button(parent, text="Closed", font=("Arial", 12), command=send_data_to_arduino)
-    btn1.pack(pady=5)
+    def button_action(row, col):
+        print(f"Button at Row {row}, Column {col} clicked")
 
-    btn2 = tk.Button(parent, text="Button 2", font=("Arial", 12), command=lambda: print("Button 2 Clicked"))
-    btn2.pack(pady=5)
+    # Create a 2x3 grid of buttons
+    for row in range(2):
+        for col in range(3):
+            labels = [
+                ["Override", "Passing Through", "Guest"],
+                ["Hidden Button", "Hidden Button", "Hidden Button"]
+            ]
+            is_hidden = labels[row][col] == "Hidden Button"
+            btn = tk.Button(
+                parent,
+                text=labels[row][col] if not is_hidden else "Hidden",
+                font=("Arial", 12, "bold"),
+                bg="black",
+                fg="black",
+                #highlightbackground="black",
+                #highlightthickness=0.05,
+                wraplength=50 if labels[row][col] == "Passing Through" else 0,  # Wrap text if label is "Passing Through"
+                state="disabled" if is_hidden else "normal",
+                command=lambda r=row, c=col, hidden=is_hidden: button_action(r+1, c+1) if not hidden else None
+            )
+            btn.grid(row=row+1, column=col, padx=1, pady=1, sticky="nsew")  # Adjust row index for label
+
+    # Configure grid weights to make buttons expand
+    for i in range(3):  # 2 rows + 1 for the label
+        parent.grid_rowconfigure(i, weight=1)
+    for j in range(3):  # 3 columns
+        parent.grid_columnconfigure(j, weight=1)
