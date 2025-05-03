@@ -62,7 +62,7 @@ def show_dashboard():
     content_frame.pack(side="right", fill="both", expand=True)
 
     # Sidebar Buttons
-    sections = ["Home", "Profile", "Settings", "Logout"]
+    sections = ["Home", "Profile", "Settings"]
 
     for section in sections:
         btn = tk.Button(
@@ -73,14 +73,25 @@ def show_dashboard():
             font=("Arial", 12),
             command=lambda s=section: show_content(s)  # Dynamically pass section
         )
-        btn.pack(fill="x", pady=5, padx=10)
-
-        if section == "Logout":
-            btn.configure(command=logout)   
+        btn.pack(fill="x", pady=5, padx=10)        
         
         if section == "Settings":
             btn.configure(command=settings)
 
+
+    # Logout Button (placed at the bottom of the sidebar)
+    logout_btn = tk.Button(
+        sidebar, 
+        text="Logout", 
+        fg="black", 
+        bg="black", 
+        font=("Arial", 12), 
+        command=logout
+    )
+    logout_btn.pack(side="bottom", fill="x", pady=5, padx=10)
+    # Configure sidebar to expand
+    sidebar.pack_propagate(False)  # Prevent sidebar from resizing to fit content
+    
     # Default content
     show_content("Home")  # Ensure home section loads first
 
@@ -97,18 +108,31 @@ def show_content(section):
 
 # Function to logout
 def logout():
-    global dashboard_frame  # Ensure we can access and destroy it
+    global dashboard_frame, content_frame  # Ensure we can access and modify the content area
 
-    boolLogout = messagebox.askyesno("Are you sure you want to logout?", "Are you sure you want to logout?")
+    for widget in content_frame.winfo_children():
+        widget.destroy()  # Clear previous content
 
-    if boolLogout:
-        if dashboard_frame:
-            dashboard_frame.destroy()  # Remove the dashboard
+    label = tk.Label(content_frame, text="Are you sure you want to logout?", font=("Arial", 16))
+    label.pack(pady=20)
 
-        login_screen()  # Show the login screen again
-        root.update_idletasks()  # Force UI update
-    else:
-        return
+    btn_frame = tk.Frame(content_frame)
+    btn_frame.pack(pady=10)
+
+    btn_yes = tk.Button(btn_frame, text="Yes", command=lambda: confirm_logout())
+    btn_yes.pack(side="left", padx=10)
+
+    btn_no = tk.Button(btn_frame, text="No", command=lambda: show_content("Home"))
+    btn_no.pack(side="left", padx=10)
+
+def confirm_logout():
+    global dashboard_frame
+
+    if dashboard_frame:
+        dashboard_frame.destroy()  # Remove the dashboard
+
+    login_screen()  # Show the login screen again
+    root.update_idletasks()  # Force UI update
 
 
 # Function to display settings

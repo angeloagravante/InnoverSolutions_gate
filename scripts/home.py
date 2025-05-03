@@ -29,19 +29,38 @@ def home(parent):
     tk.Label(parent, text="Welcome to Main Section", font=("Arial", 16)).grid(row=0, column=0, columnspan=3, pady=5)
 
     def button_action(row, col):
-        print(f"Button at Row {row}, Column {col} clicked")
+        if row == 1 and col == 1:  # Override button
+            override_action()
+        elif row == 1 and col == 2:  # Passing Through button
+            passing_through_action()
+        elif row == 1 and col == 3:  # Guest button
+            guest_action()
+        else:
+            print(f"Button at Row {row}, Column {col} clicked")
+
+    def override_action():
+        print("Override button clicked")
+        # Add your logic for the Override button here
+
+    def passing_through_action():
+        print("Passing Through button clicked")
+        # Add your logic for the Passing Through button here
+
+    def guest_action():
+        print("Guest button clicked")
+        # Add your logic for the Guest button here
 
     # Create a 2x3 grid of buttons
-    for row in range(2):
+    for row in range(1):
         for col in range(3):
             labels = [
                 ["Override", "Passing Through", "Guest"],
-                ["Hidden Button", "Hidden Button", "Hidden Button"]
+                #["Hidden Button", "Hidden Button", "Hidden Button"]
             ]
             is_hidden = labels[row][col] == "Hidden Button"
             btn = tk.Button(
                 parent,
-                text=labels[row][col] if not is_hidden else "Hidden",
+                text=labels[row][col] if not is_hidden else " ",
                 font=("Arial", 12, "bold"),
                 bg="black",
                 fg="black",
@@ -51,7 +70,7 @@ def home(parent):
                 state="disabled" if is_hidden else "normal",
                 command=lambda r=row, c=col, hidden=is_hidden: button_action(r+1, c+1) if not hidden else None
             )
-            btn.grid(row=row+1, column=col, padx=1, pady=1, sticky="nsew")  # Adjust row index for label
+            btn.grid(row=row+1, column=col, padx=10, pady=1, sticky="nsew")  # Adjust row index for label
 
     # Configure grid weights to make buttons expand
     for i in range(3):  # 2 rows + 1 for the label
