@@ -184,9 +184,12 @@ def login_screen():
                 gif_frames.append(ImageTk.PhotoImage(gif.copy()))
 
             def animate(index=0):
-                loading_label.config(image=gif_frames[index])
-                root.update_idletasks()
-                root.after(50, animate, (index + 1) % len(gif_frames))  # Reduced delay to 50ms for faster playback
+                try:
+                    loading_label.config(image=gif_frames[index])
+                    root.update_idletasks()
+                    root.after(50, animate, (index + 1) % len(gif_frames))  # Reduced delay to 50ms for faster playback
+                except tk.TclError:
+                    pass  # Ignore error if the label is destroyed
 
             animate()  # Start animation
         except Exception as e:
@@ -235,10 +238,12 @@ root.geometry("600x400")
 log = Logger()
 log.log_info("Application started")
 
-check_db()  # Check and initialize the database
 
 # --------- LOGIN SCREEN ---------
 login_screen()
+
+check_db()  # Check and initialize the database
+
 
 # Run Tkinter event loop
 root.mainloop()

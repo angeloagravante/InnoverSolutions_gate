@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from exceptions import DatabaseError, NoUsers
+from scripts.logger import *
 
 DB_FILE = "users.db"
 

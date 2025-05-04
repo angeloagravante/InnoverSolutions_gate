@@ -1,53 +1,52 @@
-2025-05-04 21:09:29 - INFO - Application started
-2025-05-04 21:10:49 - INFO - Application started
-2025-05-04 21:11:37 - INFO - Application started
-2025-05-04 21:11:37 - ERROR - An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6200012800.
-2025-05-04 21:11:37 - ERROR - An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6200012800.
-2025-05-04 21:11:37 - ERROR - Database error: An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6200012800.
-2025-05-04 21:11:37 - ERROR - Database error: An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6200012800.
-2025-05-04 21:11:38 - ERROR - Database check failed. Closing application.
-2025-05-04 21:11:38 - ERROR - Database check failed. Closing application.
-2025-05-04 21:12:45 - INFO - Application started
-2025-05-04 21:12:45 - ERROR - An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6198423552.
-2025-05-04 21:12:45 - ERROR - An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6198423552.
-2025-05-04 21:12:45 - ERROR - Database error: An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6198423552.
-2025-05-04 21:12:45 - ERROR - Database error: An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6198423552.
-2025-05-04 21:12:45 - ERROR - Database check failed. Closing application.
-2025-05-04 21:12:45 - ERROR - Database check failed. Closing application.
-2025-05-04 21:14:28 - INFO - Application started
-2025-05-04 21:14:29 - ERROR - An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6166540288.
-2025-05-04 21:14:29 - ERROR - An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6166540288.
-2025-05-04 21:14:29 - ERROR - Database error: An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6166540288.
-2025-05-04 21:14:29 - ERROR - Database error: An error occurred while creating the database: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 8269908032 and this is thread id 6166540288.
-2025-05-04 21:14:29 - ERROR - Database check failed. Closing application.
-2025-05-04 21:14:29 - ERROR - Database check failed. Closing application.
-2025-05-04 21:14:49 - INFO - Application started
-2025-05-04 21:14:49 - ERROR - Unexpected error during database check: module 'scripts.database' has no attribute 'create_connection'
-2025-05-04 21:14:49 - ERROR - Database check failed. Closing application.
-2025-05-04 21:14:54 - INFO - Application started
-2025-05-04 21:14:54 - ERROR - Unexpected error during database check: module 'scripts.database' has no attribute 'create_connection'
-2025-05-04 21:14:54 - ERROR - Database check failed. Closing application.
-2025-05-04 21:17:28 - INFO - Application started
-2025-05-04 21:17:42 - INFO - Application started
-2025-05-04 21:20:12 - INFO - Application started
-2025-05-04 21:22:06 - INFO - Application started
-2025-05-04 21:23:31 - INFO - Application started
-2025-05-04 21:25:48 - INFO - Application started
-2025-05-04 21:25:49 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:27:36 - INFO - Application started
-2025-05-04 21:27:37 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:28:02 - INFO - Application started
-2025-05-04 21:28:04 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:29:12 - INFO - Application started
-2025-05-04 21:29:14 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:30:27 - INFO - Application started
-2025-05-04 21:30:29 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:30:49 - INFO - Application started
-2025-05-04 21:30:52 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:30:58 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:31:58 - INFO - Application started
-2025-05-04 21:32:00 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:32:05 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:32:13 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
-2025-05-04 21:32:55 - INFO - Application started
-2025-05-04 21:32:57 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
+2025-05-04 21:48:24 - INFO - Application started
+2025-05-04 21:48:24 - INFO - check_table() called
+2025-05-04 21:48:24 - INFO - check_table() called
+2025-05-04 21:48:24 - INFO - Caller stack trace:
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 242, in <module>
+    check_db()  # Check and initialize the database
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 147, in check_db
+    db.initialize_database()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 34, in initialize_database
+    check_table()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 49, in check_table
+    log.log_info("Caller stack trace:\n" + "".join(traceback.format_stack()))
+
+2025-05-04 21:48:24 - INFO - Caller stack trace:
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 242, in <module>
+    check_db()  # Check and initialize the database
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 147, in check_db
+    db.initialize_database()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 34, in initialize_database
+    check_table()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 49, in check_table
+    log.log_info("Caller stack trace:\n" + "".join(traceback.format_stack()))
+
+2025-05-04 21:48:24 - INFO - check_table() called
+2025-05-04 21:48:24 - INFO - check_table() called
+2025-05-04 21:48:24 - INFO - check_table() called
+2025-05-04 21:48:24 - INFO - Caller stack trace:
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 242, in <module>
+    check_db()  # Check and initialize the database
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 148, in check_db
+    db.check_table()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 49, in check_table
+    log.log_info("Caller stack trace:\n" + "".join(traceback.format_stack()))
+
+2025-05-04 21:48:24 - INFO - Caller stack trace:
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 242, in <module>
+    check_db()  # Check and initialize the database
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 148, in check_db
+    db.check_table()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 49, in check_table
+    log.log_info("Caller stack trace:\n" + "".join(traceback.format_stack()))
+
+2025-05-04 21:48:24 - INFO - Caller stack trace:
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 242, in <module>
+    check_db()  # Check and initialize the database
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/main.py", line 148, in check_db
+    db.check_table()
+  File "/Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/scripts/database.py", line 49, in check_table
+    log.log_info("Caller stack trace:\n" + "".join(traceback.format_stack()))
+
+2025-05-04 21:53:03 - INFO - Application started
+2025-05-04 21:54:12 - INFO - Loading GIF path: /Users/angeloagravante/Documents/Gate Project/gitrepository/InnoverSolutions_gate/images/load.gif
