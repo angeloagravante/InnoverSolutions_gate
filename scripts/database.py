@@ -10,7 +10,7 @@ c = conn.cursor()
 def check_database():
 
     print (f"DEBUG: Checking database")
-    print (f"DEBUG: Database exists: {os.path.exists('users.db')}")
+    #print (f"DEBUG: Database exists: {os.path.exists('users.db')}")
     try:
         if not os.path.exists("users.db"):
             c.execute("CREATE TABLE users (username TEXT PRIMARY KEY, hash_password TEXT, salt TEXT)")

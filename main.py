@@ -8,15 +8,9 @@ import serial
 from scripts.database import *
 from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
+from scripts.logger import *
+from scripts.arduino_module import Arduino
 from exceptions import *
-
-# ------------------- SERIAL SETUP -------------------
-try:
-    ser = serial.Serial('/dev/cu.usbmodem1401', 9600, timeout=1)  # Adjust port as needed
-except serial.SerialException:
-    print("Serial connection failed. Check your device.")
-    ser = None  # Ensure the program doesn't crash if serial fails
-
 
 # Function to verify login
 def login(login_frame, username, password):
@@ -30,15 +24,6 @@ def login(login_frame, username, password):
             if isinstance(widget, tk.Label) and widget.cget("text") == "Invalid username or password":
                 return 
         tk.Label(login_frame, text="Invalid username or password", fg="red").pack()
-
-# ------------------- SERIAL READER THREAD -------------------
-def read_serial():
-    """ Continuously listens for serial input and updates UI. """
-    while True:
-        if ser and ser.in_waiting > 0:
-            data = ser.readline().decode('utf-8').strip()
-            if data == "BUTTON_PRESSED":
-                root.after(0, open_gate)  # Update UI from main thread
 
 # ------------------- UI UPDATE ON BUTTON PRESS -------------------
 def open_gate():
@@ -172,13 +157,24 @@ def login_screen():
     entry_password.insert(0, "admin")  # Auto-populate with "admin"
     entry_password.pack(pady=5)
 
-    btn_login = tk.Button(login_frame, text="Login", command=lambda: login(login_frame, entry_username.get(), entry_password.get()))
+    def attempt_login():
+        if not login(login_frame, entry_username.get(), entry_password.get()):
+            tk.Label(login_frame, text="Invalid username or password", fg="red").pack()
+
+    btn_login = tk.Button(login_frame, text="Login", command=attempt_login)
     btn_login.pack(pady=10)
 
 # Create main window instance
 root = tk.Tk()
 root.title("Automatic Gate Boom Barrier System")
 root.geometry("600x400")
+
+# create Instance of logger
+log = Logger()
+log.log_info("Application started")
+
+# --------- LOGIN SCREEN ---------
+login_screen()
 
 # ----------- DATABASE CHECK -----------
 try:
@@ -187,13 +183,6 @@ except Exception as e:
     print("An error occurred while checking the database:", e)
     root.destroy()  # Close the window
     exit()
-
-# --------- LOGIN SCREEN ---------
-login_screen()
-
-# Start Serial Thread
-serial_thread = threading.Thread(target=read_serial, daemon=True)
-serial_thread.start()
 
 # Run Tkinter event loop
 root.mainloop()
