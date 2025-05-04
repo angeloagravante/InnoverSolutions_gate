@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime
+from logging.handlers import TimedRotatingFileHandler
 
 class Logger:
     def __init__(self, log_dir="logs", log_file="activity.log", exception_log_file="exceptions.log"):
@@ -12,23 +12,31 @@ class Logger:
         log_path = os.path.join(log_dir, log_file)
         exception_log_path = os.path.join(log_dir, exception_log_file)
         
-        # Configure the main logger
-        logging.basicConfig(
-            filename=log_path,
-            level=logging.INFO,
-            format="%(asctime)s - %(levelname)s - %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S"
+        # Configure the main logger with TimedRotatingFileHandler
+        main_handler = TimedRotatingFileHandler(
+            log_path, when="midnight", interval=1, backupCount=7
         )
-        self.logger = logging.getLogger()
+        main_handler.setLevel(logging.INFO)
+        main_handler.setFormatter(logging.Formatter(
+            "%(asctime)s - %(levelname)s - %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S"
+        ))
+        self.logger = logging.getLogger("main_logger")
+        self.logger.setLevel(logging.INFO)
+        self.logger.addHandler(main_handler)
+        self.logger.propagate = False
 
-        # Configure the exception logger
-        self.exception_logger = logging.getLogger("exception_logger")
-        exception_handler = logging.FileHandler(exception_log_path)
+        # Configure the exception logger with TimedRotatingFileHandler
+        exception_handler = TimedRotatingFileHandler(
+            exception_log_path, when="midnight", interval=1, backupCount=7
+        )
         exception_handler.setLevel(logging.ERROR)
         exception_handler.setFormatter(logging.Formatter(
             "%(asctime)s - %(levelname)s - %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S"
         ))
+        self.exception_logger = logging.getLogger("exception_logger")
+        self.exception_logger.setLevel(logging.ERROR)
         self.exception_logger.addHandler(exception_handler)
         self.exception_logger.propagate = False
 

@@ -21,13 +21,6 @@ except ArduinoError as e:
     print(f"SerialException: Failed to connect to Arduino: {e}")
     Arduino = None  # Ensure the program doesn't crash if Arduino initialization fails
 
-# Example usage: Call the home function with a valid parent (e.g., a Tk instance)
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.geometry("400x400")  # Set window size
-    home(root)
-    root.mainloop()
-
 def home(parent):
     """Function to display Home section with two buttons."""
     # Clear the parent frame
@@ -131,3 +124,10 @@ def home(parent):
         parent.grid_rowconfigure(i, weight=1)
     for j in range(3):  # 3 columns
         parent.grid_columnconfigure(j, weight=1)
+
+# Example usage: Call the home function with a valid parent (e.g., a Tk instance)
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.geometry("400x400")  # Set window size
+    home(root)
+    root.mainloop()

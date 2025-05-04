@@ -1,11 +1,14 @@
 import tkinter as tk
 import exceptions as ex
+from tkinter import messagebox  # Import messagebox for error dialogs
 import scripts.database as db
 import threading
 import serial
+import time
+import queue
 #import scripts.user_management as user
 
-from scripts.database import *
+#from scripts.database import *
 from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
 from scripts.logger import *
@@ -18,18 +21,14 @@ def login(login_frame, username, password):
     
     if User.authenticate():  # Call function from login.py
         login_frame.pack_forget()  # Hide login screen
-        show_dashboard()  # Show dashboard
+
+        return True
     else:
         for widget in login_frame.winfo_children():
             if isinstance(widget, tk.Label) and widget.cget("text") == "Invalid username or password":
-                return 
+                return False
         tk.Label(login_frame, text="Invalid username or password", fg="red").pack()
-
-# ------------------- UI UPDATE ON BUTTON PRESS -------------------
-def open_gate():
-    """ Trigger gate opening event in GUI. """
-    messagebox.showinfo("Gate Access", "Button Pressed! Gate Opening...")
-    print("Gate Open Signal Received")
+        return False
 
 # Function to show dashboard after login
 def show_dashboard():
@@ -141,6 +140,15 @@ def settings():
 
             #btn_manage_user = tk.Button(content_frame, text="Manage User", command=manage_user)
             #btn_manage_user.pack(pady=5)
+def check_db():
+    try:
+        db.get_connection(db.DB_FILE)
+        db.initialize_database()
+        db.check_table()
+    except ex.DatabaseError as e:
+        log.log_error("Database error: " + str(e))
+    except ex.NoUsers as e:
+        log.log_error("No users error: " + str(e))
 
 def login_screen():
     login_frame = tk.Frame(root)
@@ -158,8 +166,62 @@ def login_screen():
     entry_password.pack(pady=5)
 
     def attempt_login():
-        if not login(login_frame, entry_username.get(), entry_password.get()):
-            tk.Label(login_frame, text="Invalid username or password", fg="red").pack()
+        # Display loading GIF
+        loading_label = tk.Label(login_frame)
+        loading_label.pack(pady=10)
+
+        try:
+            from PIL import Image, ImageTk
+            import os
+
+            gif_path = os.path.join(os.path.dirname(__file__), "images", "load.gif")
+            log.log_info("Loading GIF path: " + gif_path)
+
+            gif_frames = []
+            gif = Image.open(gif_path)
+            for frame in range(gif.n_frames):
+                gif.seek(frame)
+                gif_frames.append(ImageTk.PhotoImage(gif.copy()))
+
+            def animate(index=0):
+                loading_label.config(image=gif_frames[index])
+                root.update_idletasks()
+                root.after(50, animate, (index + 1) % len(gif_frames))  # Reduced delay to 50ms for faster playback
+
+            animate()  # Start animation
+        except Exception as e:
+            log.log_error("Error loading GIF: " + str(e))
+            loading_label.config(text="Signing in...", font=("Arial", 12))  # Fallback text if GIF is not found
+
+        # Update the UI to show the loading GIF
+        root.update_idletasks()
+
+        def delayed_login():
+            # Create a queue to communicate between threads
+            result_queue = queue.Queue()
+
+            # Perform login in a separate thread to avoid freezing the UI
+            def perform_login():
+                success = login(login_frame, entry_username.get(), entry_password.get())
+                result_queue.put(success)  # Send result to the queue
+
+            def check_result():
+                try:
+                    success = result_queue.get_nowait()  # Get result from the queue
+                    loading_label.destroy()  # Remove loading GIF
+                    root.update_idletasks()  # Ensure UI updates after GIF removal
+                    if not success:
+                        pass  # Error message is already handled in the login function
+                    else:
+                        show_dashboard()  # Show dashboard
+                except queue.Empty:
+                    root.after(100, check_result)  # Check again after 100ms if no result yet
+
+            threading.Thread(target=perform_login).start()
+            #threading.Thread(target=perform_database_check).start()
+            check_result()  # Start checking for the result
+
+        root.after(3000, delayed_login)  # Delay by 1 second (1000 ms) before starting login
 
     btn_login = tk.Button(login_frame, text="Login", command=attempt_login)
     btn_login.pack(pady=10)
@@ -173,16 +235,10 @@ root.geometry("600x400")
 log = Logger()
 log.log_info("Application started")
 
+check_db()  # Check and initialize the database
+
 # --------- LOGIN SCREEN ---------
 login_screen()
-
-# ----------- DATABASE CHECK -----------
-try:
-    db.check_database()
-except Exception as e:
-    print("An error occurred while checking the database:", e)
-    root.destroy()  # Close the window
-    exit()
 
 # Run Tkinter event loop
 root.mainloop()
