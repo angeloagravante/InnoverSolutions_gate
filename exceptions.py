@@ -1,11 +1,12 @@
 from scripts.logger import *  # Import the existing logger
 
+
+logger = Logger()
+
 class AppError(Exception):
     """Base class for application-specific errors."""
     def __init__(self, message="An application error occurred"):
         super().__init__(message)
-
-        logger = Logger()
         logger.log_error(message)
 
 class DatabaseError(AppError):
