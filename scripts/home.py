@@ -53,12 +53,12 @@ def home(parent):
         # Add override content to the main content area
         tk.Label(parent, text="Scan your RFID", font=("Arial", 14)).grid(row=0, column=0, columnspan=3, pady=20)
         # Add an RFID image
-        rfid_image = tk.PhotoImage(file="images/rfid.png")  # Replace with the actual path to your RFID image
+        rfid_image = tk.PhotoImage(file="images/wifi.png")  # Replace with the actual path to your RFID image
         resized_image = rfid_image.subsample(2, 2)  # Adjust the subsample values to resize the image
         rfid_label = tk.Label(parent, image=resized_image)
         rfid_label.image = resized_image  # Keep a reference to avoid garbage collection
         rfid_label.grid(row=1, column=0, columnspan=3, pady=10)
-        tk.Button(parent, text="Back", command=lambda: home(parent)).grid(row=2, column=1, columnspan=1, pady=10)
+        # tk.Button(parent, text="Back", command=lambda: home(parent)).grid(row=2, column=1, columnspan=1, pady=10)
 
         # Use a separate thread to read RFID data from the Arduino
         def read_rfid():
@@ -73,13 +73,14 @@ def home(parent):
                         # Process the scanned RFID data here
                         # For example, you can check against a database or perform other actions
                         if rfid_data:
-                                Arduino.send_data("OK\n")  # Send a response to Arduino
+                                Arduino.send_data(Arduino.OPEN_GATE)  # Send a response to Arduino
                     elif not rfid_data:
                         print("No RFID data received.")
                         # Handle the case where no RFID data is received
                         # Display a message and return to the home section
                         tk.Label(parent, text="No RFID data received.", font=("Arial", 12)).grid(row=3, column=0, columnspan=3, pady=10)
-                        parent.after(2000, lambda: home(parent))  # Return to home after 2 seconds
+                    
+                    parent.after(2000, lambda: home(parent))  # Return to home after 2 seconds
                 except SerialTimeoutError as e:
                     print(f"Timeout error while reading RFID: {e}")
                 except Exception as e:

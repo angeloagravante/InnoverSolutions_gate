@@ -2,7 +2,13 @@ import serial
 import time
 import threading
 
+
+
 class Arduino:
+
+    OPEN_GATE = "OK\n"
+    CLOSE_GATE = "NO\n"
+
     def __init__(self, port, baud_rate=9600, timeout=1):
         self.port = port
         self.baud_rate = baud_rate
