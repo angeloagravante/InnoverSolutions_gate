@@ -34,6 +34,7 @@ class Arduino:
 
     def send_data(self, data):
         if self.connection and self.connection.is_open:
+            self.connection.flush()
             self.connection.write(data.encode())
             print(f"Sent data: {data}")
         else:
@@ -47,6 +48,7 @@ class Arduino:
                 if data:
                     if data:
                         self.connection.reset_input_buffer()  # Clear the serial input buffer
+                        self.connection.reset_output_buffer()  # Clear the serial output buffer
                     return data
                 elif time.time() - start_time > timeout:
                     print("Timeout reached. No data received.")
@@ -57,6 +59,11 @@ class Arduino:
         else:
             print("Connection is not open. Cannot receive data.")
             return None
+    
+    def reset(self):
+        if self.connection and self.connection.is_open:
+            self.connection.reset_input_buffer()
+            self.connection.reset_output_buffer()
 
     def close(self):
         if self.connection and self.connection.is_open:
