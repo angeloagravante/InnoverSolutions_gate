@@ -1,6 +1,5 @@
 import tkinter as tk
 import exceptions as ex
-from tkinter import messagebox  # Import messagebox for error dialogs
 import scripts.database as db
 import threading
 import serial
@@ -9,6 +8,7 @@ import queue
 #import scripts.user_management as user
 
 #from scripts.database import *
+from tkinter import messagebox  # Import messagebox for error dialogs
 from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
 from scripts.logger import *
@@ -224,10 +224,13 @@ def login_screen():
             #threading.Thread(target=perform_database_check).start()
             check_result()  # Start checking for the result
 
-        root.after(3000, delayed_login)  # Delay by 1 second (1000 ms) before starting login
+        root.after(2000, delayed_login)  # Delay by 1 second (1000 ms) before starting login
 
     btn_login = tk.Button(login_frame, text="Login", command=attempt_login)
     btn_login.pack(pady=10)
+
+    # Bind the Enter key to trigger the login attempt
+    root.bind('<Return>', lambda event: attempt_login())
 
 # Create main window instance
 root = tk.Tk()

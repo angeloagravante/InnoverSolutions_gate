@@ -23,8 +23,10 @@ except ArduinoError as e:
 
 def home(parent):
     """Function to display Home section with two buttons."""
+    if Arduino.is_connected:
+        Arduino.reset()  # Reset the Arduino connection
+
     # Clear the parent frame
-    
     for widget in parent.winfo_children():  # Clear previous widgets
         widget.destroy()
 
@@ -46,6 +48,9 @@ def home(parent):
 
     def override_action():
         print("Override button clicked")
+
+        Arduino.reset()  # Reset the Arduino connection
+
         # Clear the parent frame and display override content
         for widget in parent.winfo_children():
             widget.destroy()
@@ -74,6 +79,7 @@ def home(parent):
                         # For example, you can check against a database or perform other actions
                         if rfid_data:
                                 Arduino.send_data(Arduino.OPEN_GATE)  # Send a response to Arduino
+                                Arduino.reset()  # Reset the Arduino connection
                     elif not rfid_data:
                         print("No RFID data received.")
                         # Handle the case where no RFID data is received
