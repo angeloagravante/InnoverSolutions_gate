@@ -1,9 +1,12 @@
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
 import sqlite3
 import os
 import hashlib
+
+from tkinter import ttk
+from tkinter import messagebox
+from scripts.logger import Logger
+from scripts.database import DatabaseManager
 
 def user_management_frame(parent):
     frame = ttk.Frame(parent)
@@ -45,10 +48,18 @@ def add_user(parent):
     OK = tk.Button(parent, text="OK", command=lambda: user(entry_username.get(), entry_password.get()).insert_user())
     OK.pack(pady=10)
 
-class user:
+class user():
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+        self.db = DatabaseManager()  # Create an instance of the DatabaseManager
+        self.log = Logger()  # Create an instance of the Logger
+
+        if not self.db.isConnected:
+            self.log.log_error("Database connection failed.")
+            return
+        
 
     def get_username(self):
         return self.username
@@ -71,16 +82,17 @@ class user:
         return salt.hex(), hashed_password
 
     def insert_user(self ):
-        conn = sqlite3.connect("users.db")
-        c = conn.cursor()
+        conn = self.db.get_connection()
+        cursor = conn.cursor()
 
         try:
 
             #print(f"DEBUG: Username = {self.username}, Password = {self.password}")  # Debugging line
 
             salt, hashed_password = user.hash_password(self, self.password)
-            c.execute("INSERT INTO users VALUES (?, ?, ?)", (self.username,hashed_password, salt ))
-            conn.commit()
+            cursor.execute("INSERT INTO users VALUES (?, ?, ?)", (self.username,hashed_password, salt ))
+            cursor.commit()
+
         except sqlite3.IntegrityError:
             messagebox.showerror("User Exists", f"User {self.username} already exists")
             return
@@ -97,11 +109,13 @@ class user:
     
     #return true or false if user exists    
     def authenticate(self):
-        conn = sqlite3.connect("users.db")
-        c = conn.cursor()
-        
-        c.execute("SELECT hash_password, salt FROM users WHERE username=?", (self.username,))
-        user = c.fetchone()
+        #conn = sqlite3.connect("users.db")
+        #c = conn.cursor()
+        conn = self.db.get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT hash_password, salt FROM users WHERE username=?", (self.username,))
+        user = cursor.fetchone()
         conn.close()
 
         if user:

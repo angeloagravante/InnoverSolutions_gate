@@ -1,21 +1,43 @@
 import tkinter as tk
-
-import exceptions as ex
 import scripts.arduino_module as arduino_module
+import scripts.logger as logger
 
 #from arduino_module import *
-from exceptions import *
+from exceptions_class import *
 from tkinter import messagebox
 import threading
 # Create an instance of the Arduino class
 Arduino = arduino_module.Arduino(port='/dev/tty.usbmodem11301', baud_rate=9600)
+log = logger.Logger()  # Create an instance of the Logger
 
 # Connect to the Arduino
+import serial.tools.list_ports
+
+def detect_arduino_port():
+    """Automatically detect the Arduino port."""
+    ports = serial.tools.list_ports.comports()
+    for port in ports:
+        # Check for common Arduino identifiers in the port description
+        # You can customize this check based on your Arduino model
+        # For example, you can check for "Arduino" or "ttyUSB" in the description
+        # or device name
+        if "IOUSBHostDevice" in port.description or "tty" in port.device or "Arduino" in port.description:
+            print(f"Arduino detected on port: {port.device}");
+            log.log_info(f"Arduino detected on port: {port.device}")
+            return port.device
+    return None
+
 try:
-    Arduino.connect()
-    # Check if the connection was successful
-    if Arduino.is_connected:
-        print(f"Connected to Arduino on port {Arduino.port}")
+    detected_port = detect_arduino_port()
+    if detected_port:
+        Arduino = arduino_module.Arduino(port=detected_port, baud_rate=9600)
+        Arduino.connect()
+        # Check if the connection was successful
+        if Arduino.is_connected:
+            logger.log_info(f"Connected to Arduino on port {Arduino.port}")
+    else:
+        print("No Arduino device detected.")
+        Arduino = None  # Ensure the program doesn't crash if Arduino is not found
 
 except ArduinoError as e:
     print(f"SerialException: Failed to connect to Arduino: {e}")

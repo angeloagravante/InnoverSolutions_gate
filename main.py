@@ -1,19 +1,16 @@
 import tkinter as tk
-import exceptions as ex
 import scripts.database as db
 import threading
-import serial
-import time
 import queue
-#import scripts.user_management as user
+import exceptions_class as ex
+import scripts.database as database
 
-#from scripts.database import *
 from tkinter import messagebox  # Import messagebox for error dialogs
 from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
 from scripts.logger import *
 from scripts.arduino_module import Arduino
-from exceptions import *
+
 
 # Function to verify login
 def login(login_frame, username, password):
@@ -21,7 +18,6 @@ def login(login_frame, username, password):
     
     if User.authenticate():  # Call function from login.py
         login_frame.pack_forget()  # Hide login screen
-
         return True
     else:
         for widget in login_frame.winfo_children():
@@ -142,9 +138,12 @@ def settings():
             #btn_manage_user.pack(pady=5)
 def check_db():
     try:
-        db.get_connection(db.DB_FILE)
-        db.initialize_database()
-        db.check_table()
+        db = database.DatabaseManager()  # Create an instance of the DatabaseManager
+
+        db.initialize_database()  # Initialize the database and tables
+        db.check_table()  # Check if the 'users' table contains any data
+        log.log_info("Database initialized and checked successfully.")
+        
     except ex.DatabaseError as e:
         log.log_error("Database error: " + str(e))
     except ex.NoUsers as e:
@@ -175,7 +174,7 @@ def login_screen():
             import os
 
             gif_path = os.path.join(os.path.dirname(__file__), "images", "load.gif")
-            log.log_info("Loading GIF path: " + gif_path)
+            #log.log_info("Loading GIF path: " + gif_path)
 
             gif_frames = []
             gif = Image.open(gif_path)
@@ -241,12 +240,10 @@ root.geometry("600x400")
 log = Logger()
 log.log_info("Application started")
 
-
 # --------- LOGIN SCREEN ---------
 login_screen()
 
 check_db()  # Check and initialize the database
-
 
 # Run Tkinter event loop
 root.mainloop()
