@@ -123,5 +123,16 @@ class user():
             salted_password = self.password.encode('utf-8') + bytes.fromhex(stored_salt)
             hashed_password = hashlib.sha256(salted_password).hexdigest()
             if hashed_password == stored_hash_password:
+                    self.update_lastlogin()
                     return True
         return False
+    
+    def update_lastlogin(self):
+        #conn = sqlite3.connect("users.db")
+        #c = conn.cursor()
+        conn = self.db.get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("UPDATE users SET last_login = datetime('now') WHERE username=?", (self.username,))
+        conn.commit()
+        conn.close()

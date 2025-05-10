@@ -6,9 +6,8 @@ import scripts.logger as logger
 from exceptions_class import *
 from tkinter import messagebox
 import threading
-# Create an instance of the Arduino class
-Arduino = arduino_module.Arduino(port='/dev/tty.usbmodem11301', baud_rate=9600)
-log = logger.Logger()  # Create an instance of the Logger
+
+log = Logger()  # Create an instance of the Logger
 
 # Connect to the Arduino
 import serial.tools.list_ports

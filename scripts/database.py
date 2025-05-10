@@ -39,15 +39,15 @@ class DatabaseManager:
         except sqlite3.Error as e:
             raise DatabaseError(f"Failed to connect to the database: {e}")
 
-    def initialize_database(self):
-        """Ensure the database and required tables exist."""
-        if not os.path.exists(self.db_file):
-            print("Database file not found. Creating database...")
-        try:
-            open(self.db_file, 'w').close()  # Create an empty database file
-            print("Database file created. Initializing tables...")
-        except sqlite3.Error as e:
-            raise DatabaseError(f"An error occurred while creating the tables: {e}")
+    # def initialize_database(self):
+    #     """Ensure the database and required tables exist."""
+    #     if not os.path.exists(self.db_file):
+    #         print("Database file not found. Creating database...")
+    #     try:
+    #         open(self.db_file, 'w').close()  # Create an empty database file
+    #         print("Database file created. Initializing tables...")
+    #     except sqlite3.Error as e:
+    #         raise DatabaseError(f"An error occurred while creating the tables: {e}")
         
     def check_table(self):
         """Check if the 'users' table contains any data."""

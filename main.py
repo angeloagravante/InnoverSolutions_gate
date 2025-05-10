@@ -140,10 +140,10 @@ def check_db():
     try:
         db = database.DatabaseManager()  # Create an instance of the DatabaseManager
 
-        db.initialize_database()  # Initialize the database and tables
+        #db.initialize_database()  # Initialize the database and tables
         db.check_table()  # Check if the 'users' table contains any data
         log.log_info("Database initialized and checked successfully.")
-        
+
     except ex.DatabaseError as e:
         log.log_error("Database error: " + str(e))
     except ex.NoUsers as e:
