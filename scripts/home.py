@@ -4,11 +4,11 @@ import scripts.logger as logger
 
 #from arduino_module import *
 from exceptions_class import *
-from tkinter import messagebox
 import threading
+from scripts.database import *
 
 log = Logger()  # Create an instance of the Logger
-
+db = DatabaseManager()  # Create an instance of the DatabaseManager
 # Connect to the Arduino
 import serial.tools.list_ports
 
@@ -28,15 +28,17 @@ def detect_arduino_port():
 
 try:
     detected_port = detect_arduino_port()
+    #create Arduino instance
+    Arduino = arduino_module.Arduino(port=detected_port, baud_rate=9600)
+
     if detected_port:
-        Arduino = arduino_module.Arduino(port=detected_port, baud_rate=9600)
         Arduino.connect()
         # Check if the connection was successful
         if Arduino.is_connected:
             logger.log_info(f"Connected to Arduino on port {Arduino.port}")
     else:
         print("No Arduino device detected.")
-        Arduino = None  # Ensure the program doesn't crash if Arduino is not found
+        #Arduino = None  # Ensure the program doesn't crash if Arduino is not found
 
 except ArduinoError as e:
     print(f"SerialException: Failed to connect to Arduino: {e}")
@@ -44,9 +46,11 @@ except ArduinoError as e:
 
 def home(parent):
     """Function to display Home section with two buttons."""
-    if Arduino.is_connected:
-        Arduino.reset()  # Reset the Arduino connection
-
+    try:
+        if Arduino.is_connected:
+            Arduino.reset()  # Reset the Arduino connection
+    except Exception as e:
+        log.log_error("Error resetting Arduino connection: " + str(e))
     # Clear the parent frame
     for widget in parent.winfo_children():  # Clear previous widgets
         widget.destroy()
@@ -93,20 +97,22 @@ def home(parent):
                     # Read RFID data from the Arduino
                     rfid_data = Arduino.read_rfid()
                     if rfid_data:
-                        print(f"{rfid_data}")
-                        # Display the scanned RFID data on the screen
-                        tk.Label(parent, text=f"RFID scanned: {rfid_data}", font=("Arial", 12)).grid(row=3, column=0, columnspan=3, pady=10)
+                        print(f"RFID: {rfid_data}")
                         # Process the scanned RFID data here
-                        # For example, you can check against a database or perform other actions
                         if rfid_data:
-                                Arduino.send_data(Arduino.OPEN_GATE)  # Send a response to Arduino
-                                Arduino.reset()  # Reset the Arduino connection
+                                if db.user_exists(rfid_data):
+                                    Arduino.send_data(Arduino.OPEN_GATE)  # Send a response to Arduino
+                                    Message = f"User {rfid_data} authorized."
+                                    Arduino.reset()  # Reset the Arduino connection
+                                else:
+                                    print("User not found in the database.")
+                                    Message = f"User {rfid_data} unauthorized."
+
                     elif not rfid_data:
-                        print("No RFID data received.")
-                        # Handle the case where no RFID data is received
-                        # Display a message and return to the home section
-                        tk.Label(parent, text="No RFID data received.", font=("Arial", 12)).grid(row=3, column=0, columnspan=3, pady=10)
-                    
+                        Message = "RFID scan failed. Please try again."
+                        
+                    # Display the message on the screen
+                    tk.Label(parent, text=Message, font=("Arial", 12)).grid(row=3, column=0, columnspan=3, pady=10)
                     parent.after(2000, lambda: home(parent))  # Return to home after 2 seconds
                 except SerialTimeoutError as e:
                     print(f"Timeout error while reading RFID: {e}")

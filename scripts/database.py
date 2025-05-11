@@ -107,3 +107,14 @@ class DatabaseManager:
             self.close_connection(self.get_connection())
         except sqlite3.Error as e:
             print(f"Error closing the database connection: {e}")
+    
+    def user_exists(self, rfid):
+        """Check if a user exists in the database."""
+        with self.get_connection() as conn:
+            c = conn.cursor()
+            try:
+                c.execute("SELECT rfid FROM users WHERE rfid = ?", (rfid,))
+                user = c.fetchone()
+                return user is not None
+            except sqlite3.Error as e:
+                raise DatabaseError(f"An error occurred while checking if the user exists: {e}")
