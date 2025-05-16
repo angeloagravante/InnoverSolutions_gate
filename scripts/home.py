@@ -19,38 +19,46 @@ def detect_arduino_port():
     ports = serial.tools.list_ports.comports()
     for port in ports:
         # Check for common Arduino identifiers in the port description
-        # You can customize this check based on your Arduino model
-        # For example, you can check for "Arduino" or "ttyUSB" in the description
-        # or device name
         if "IOUSBHostDevice" in port.description or "tty" in port.device or "Arduino" in port.description:
-            print(f"Arduino detected on port: {port.device}");
+            print(f"Arduino detected on port: {port.device}")
             log.log_info(f"Arduino detected on port: {port.device}")
             return port.device
     return None
 
-try:
-    detected_port = detect_arduino_port()
-    #create Arduino instance
-    Arduino = arduino_module.Arduino(port=detected_port, baud_rate=9600)
+def connect_to_arduino():
+    """Attempt to connect to the Arduino."""
+    try:
+        detected_port = detect_arduino_port()
+        if detected_port:
+            global Arduino
+            Arduino = arduino_module.Arduino(port=detected_port, baud_rate=9600)
+            Arduino.connect()
+            # Check if the connection was successful
+            if Arduino.is_connected:
+                log.log_info(f"Connected to Arduino on port {Arduino.port}")
+                return True
+        else:
+            print("No Arduino device detected.")
+            log.log_error("No Arduino device detected.")
+            return False
+    except ArduinoError as e:
+        print(f"SerialException: Failed to connect to Arduino: {e}")
+        log.log_error(f"Failed to connect to Arduino: {e}")
+        return False
 
-    if detected_port:
-        Arduino.connect()
-        # Check if the connection was successful
-        if Arduino.is_connected:
-            logger.log_info(f"Connected to Arduino on port {Arduino.port}")
-    else:
-        print("No Arduino device detected.")
-        #Arduino = None  # Ensure the program doesn't crash if Arduino is not found
-
-except ArduinoError as e:
-    print(f"SerialException: Failed to connect to Arduino: {e}")
-    Arduino = None  # Ensure the program doesn't crash if Arduino initialization fails
+# Initial attempt to connect to Arduino
+Arduino = None
+connect_to_arduino()
 
 def home(parent):
     """Function to display Home section with two buttons."""
     try:
         if Arduino.is_connected:
             Arduino.reset()  # Reset the Arduino connection
+        else:
+            if not connect_to_arduino():
+                print("Failed to connect to Arduino.")
+                log.log_error("Failed to connect to Arduino.")
     except Exception as e:
         log.log_error("Error resetting Arduino connection: " + str(e))
     # Clear the parent frame
@@ -72,12 +80,27 @@ def home(parent):
             guest_action()
         else:
             print(f"Button at Row {row}, Column {col} clicked")
+            
+    def no_rfid_connected_screen():
+        for widget in parent.winfo_children():
+            widget.destroy()
+
+        # Add override content to the main content area
+        tk.Label(parent, text="No RFID reader connected", font=("Arial", 14)).grid(row=0, column=0, columnspan=3, pady=20)
+        tk.Button(parent, text="Back", command=lambda: home(parent)).grid(row=2, column=1, columnspan=1, pady=10)
 
     def override_action():
         print("Override button clicked")
 
-        Arduino.reset()  # Reset the Arduino connection
-
+        try:
+            if Arduino.is_connected:
+                Arduino.reset()  # Reset the Arduino connection
+            else:
+                if not connect_to_arduino():
+                    print("Failed to connect to Arduino.")
+        except Exception as e:
+            no_rfid_connected_screen()
+            return
 
         # Clear the parent frame and display entrance and exit buttons
         for widget in parent.winfo_children():
@@ -120,13 +143,16 @@ def home(parent):
                 rfid_screen()
             elif row == 1 and col == 2:
                 rfid_screen()
-    
 
         def rfid_screen():
             for widget in parent.winfo_children():
                 widget.destroy()
-
-            Arduino.reset()
+            try:
+                Arduino.reset()
+            except Exception as e:
+                no_rfid_connected_screen()
+                log.log_error("Error resetting Arduino connection: " + str(e))
+                return
 
             # Add override content to the main content area
             tk.Label(parent, text="Scan your RFID", font=("Arial", 14)).grid(row=0, column=0, columnspan=3, pady=20)

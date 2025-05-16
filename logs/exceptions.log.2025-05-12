@@ -1,0 +1,51 @@
+2025-05-11 00:38:04 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:39:25 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:39:25 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:39:25 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:40:19 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:40:19 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:40:19 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:42:23 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:42:23 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:42:23 - ERROR - An error occurred while checking the table: no such table: users
+2025-05-11 00:42:23 - ERROR - Database error: An error occurred while checking the table: no such table: users
+2025-05-11 00:42:23 - ERROR - Database error: An error occurred while checking the table: no such table: users
+2025-05-11 00:42:23 - ERROR - Database error: An error occurred while checking the table: no such table: users
+2025-05-11 23:38:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-11 23:38:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-11 23:38:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-11 23:38:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:35:47 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:35:47 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:35:47 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:35:47 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:40:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:40:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:40:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:40:13 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:41:32 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:41:32 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:41:32 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:41:32 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:42:00 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:42:00 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:42:00 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:42:00 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:42:45 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:42:45 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:42:45 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:42:45 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-12 13:48:27 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:48:27 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:48:27 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-12 13:48:27 - ERROR - Error resetting Arduino connection: name 'Arduino' is not defined
+2025-05-16 11:42:27 - ERROR - No Arduino device detected.
+2025-05-16 11:42:34 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:35 - ERROR - No Arduino device detected.
+2025-05-16 11:42:43 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:43:21 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:22 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:42 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:48 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:55 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:44:25 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')

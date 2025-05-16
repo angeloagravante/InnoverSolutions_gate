@@ -3,3 +3,289 @@
 2025-05-16 10:44:06 - INFO - Application started
 2025-05-16 10:44:06 - INFO - Database initialized and checked successfully.
 2025-05-16 10:44:06 - INFO - Database initialized and checked successfully.
+2025-05-16 11:41:19 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:41:19 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:41:20 - INFO - Application started
+2025-05-16 11:41:20 - INFO - Application started
+2025-05-16 11:41:20 - INFO - Application started
+2025-05-16 11:41:20 - INFO - Database initialized and checked successfully.
+2025-05-16 11:41:20 - INFO - Database initialized and checked successfully.
+2025-05-16 11:41:20 - INFO - Database initialized and checked successfully.
+2025-05-16 11:42:27 - ERROR - No Arduino device detected.
+2025-05-16 11:42:27 - ERROR - No Arduino device detected.
+2025-05-16 11:42:27 - INFO - Application started
+2025-05-16 11:42:27 - INFO - Application started
+2025-05-16 11:42:27 - INFO - Application started
+2025-05-16 11:42:27 - INFO - Database initialized and checked successfully.
+2025-05-16 11:42:27 - INFO - Database initialized and checked successfully.
+2025-05-16 11:42:27 - INFO - Database initialized and checked successfully.
+2025-05-16 11:42:34 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:34 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:34 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:34 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:35 - ERROR - No Arduino device detected.
+2025-05-16 11:42:35 - ERROR - No Arduino device detected.
+2025-05-16 11:42:35 - ERROR - No Arduino device detected.
+2025-05-16 11:42:35 - ERROR - No Arduino device detected.
+2025-05-16 11:42:43 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:43 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:43 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:43 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:42:44 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:42:44 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:42:44 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:42:44 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:43:21 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:21 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:21 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:21 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:22 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:22 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:22 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:22 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:42 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:42 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:42 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:42 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:48 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:48 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:48 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:48 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:55 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:55 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:55 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:43:55 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:44:25 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:44:25 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:44:25 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:44:25 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:46:05 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:46:05 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:46:06 - INFO - Application started
+2025-05-16 11:46:06 - INFO - Application started
+2025-05-16 11:46:06 - INFO - Application started
+2025-05-16 11:46:06 - INFO - Database initialized and checked successfully.
+2025-05-16 11:46:06 - INFO - Database initialized and checked successfully.
+2025-05-16 11:46:06 - INFO - Database initialized and checked successfully.
+2025-05-16 11:46:37 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:46:37 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:46:37 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:46:37 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 11:50:22 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:50:22 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:50:24 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:50:24 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:50:24 - INFO - Application started
+2025-05-16 11:50:24 - INFO - Application started
+2025-05-16 11:50:24 - INFO - Application started
+2025-05-16 11:50:24 - INFO - Database initialized and checked successfully.
+2025-05-16 11:50:24 - INFO - Database initialized and checked successfully.
+2025-05-16 11:50:24 - INFO - Database initialized and checked successfully.
+2025-05-16 11:51:16 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:51:16 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:51:18 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:51:18 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:51:18 - INFO - Application started
+2025-05-16 11:51:18 - INFO - Application started
+2025-05-16 11:51:18 - INFO - Application started
+2025-05-16 11:51:18 - INFO - Database initialized and checked successfully.
+2025-05-16 11:51:18 - INFO - Database initialized and checked successfully.
+2025-05-16 11:51:18 - INFO - Database initialized and checked successfully.
+2025-05-16 11:52:46 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:52:46 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:52:48 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:52:48 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:52:48 - INFO - Application started
+2025-05-16 11:52:48 - INFO - Application started
+2025-05-16 11:52:48 - INFO - Application started
+2025-05-16 11:52:48 - INFO - Database initialized and checked successfully.
+2025-05-16 11:52:48 - INFO - Database initialized and checked successfully.
+2025-05-16 11:52:48 - INFO - Database initialized and checked successfully.
+2025-05-16 11:55:41 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:55:41 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:55:43 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:55:43 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:55:44 - INFO - Application started
+2025-05-16 11:55:44 - INFO - Application started
+2025-05-16 11:55:44 - INFO - Application started
+2025-05-16 11:55:44 - INFO - Database initialized and checked successfully.
+2025-05-16 11:55:44 - INFO - Database initialized and checked successfully.
+2025-05-16 11:55:44 - INFO - Database initialized and checked successfully.
+2025-05-16 11:58:16 - ERROR - No Arduino device detected.
+2025-05-16 11:58:16 - ERROR - No Arduino device detected.
+2025-05-16 11:58:17 - INFO - Application started
+2025-05-16 11:58:17 - INFO - Application started
+2025-05-16 11:58:17 - INFO - Application started
+2025-05-16 11:58:17 - INFO - Database initialized and checked successfully.
+2025-05-16 11:58:17 - INFO - Database initialized and checked successfully.
+2025-05-16 11:58:17 - INFO - Database initialized and checked successfully.
+2025-05-16 11:58:25 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:58:25 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:58:25 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:58:25 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 11:58:27 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:58:27 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:58:27 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:58:27 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 11:58:29 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:58:29 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:58:29 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 11:58:29 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:00:55 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:00:55 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:00:57 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:00:57 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:00:58 - INFO - Application started
+2025-05-16 12:00:58 - INFO - Application started
+2025-05-16 12:00:58 - INFO - Application started
+2025-05-16 12:00:58 - INFO - Database initialized and checked successfully.
+2025-05-16 12:00:58 - INFO - Database initialized and checked successfully.
+2025-05-16 12:00:58 - INFO - Database initialized and checked successfully.
+2025-05-16 12:02:01 - ERROR - No Arduino device detected.
+2025-05-16 12:02:01 - ERROR - No Arduino device detected.
+2025-05-16 12:02:02 - INFO - Application started
+2025-05-16 12:02:02 - INFO - Application started
+2025-05-16 12:02:02 - INFO - Application started
+2025-05-16 12:02:02 - INFO - Database initialized and checked successfully.
+2025-05-16 12:02:02 - INFO - Database initialized and checked successfully.
+2025-05-16 12:02:02 - INFO - Database initialized and checked successfully.
+2025-05-16 12:02:10 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:10 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:10 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:10 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:11 - ERROR - No Arduino device detected.
+2025-05-16 12:02:11 - ERROR - No Arduino device detected.
+2025-05-16 12:02:11 - ERROR - No Arduino device detected.
+2025-05-16 12:02:11 - ERROR - No Arduino device detected.
+2025-05-16 12:02:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:17 - ERROR - No Arduino device detected.
+2025-05-16 12:02:17 - ERROR - No Arduino device detected.
+2025-05-16 12:02:17 - ERROR - No Arduino device detected.
+2025-05-16 12:02:17 - ERROR - No Arduino device detected.
+2025-05-16 12:02:19 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:19 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:19 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:19 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:02:25 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:02:25 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:02:25 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:02:25 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:02:27 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:02:27 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:02:27 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:02:27 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:05:42 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:05:42 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:05:44 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:05:44 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:05:45 - INFO - Application started
+2025-05-16 12:05:45 - INFO - Application started
+2025-05-16 12:05:45 - INFO - Application started
+2025-05-16 12:05:45 - INFO - Database initialized and checked successfully.
+2025-05-16 12:05:45 - INFO - Database initialized and checked successfully.
+2025-05-16 12:05:45 - INFO - Database initialized and checked successfully.
+2025-05-16 12:09:18 - ERROR - No Arduino device detected.
+2025-05-16 12:09:18 - ERROR - No Arduino device detected.
+2025-05-16 12:09:19 - INFO - Application started
+2025-05-16 12:09:19 - INFO - Application started
+2025-05-16 12:09:19 - INFO - Application started
+2025-05-16 12:09:19 - INFO - Database initialized and checked successfully.
+2025-05-16 12:09:19 - INFO - Database initialized and checked successfully.
+2025-05-16 12:09:19 - INFO - Database initialized and checked successfully.
+2025-05-16 12:09:24 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:09:24 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:09:24 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:09:24 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:10:17 - ERROR - No Arduino device detected.
+2025-05-16 12:10:17 - ERROR - No Arduino device detected.
+2025-05-16 12:10:18 - INFO - Application started
+2025-05-16 12:10:18 - INFO - Application started
+2025-05-16 12:10:18 - INFO - Application started
+2025-05-16 12:10:18 - INFO - Database initialized and checked successfully.
+2025-05-16 12:10:18 - INFO - Database initialized and checked successfully.
+2025-05-16 12:10:18 - INFO - Database initialized and checked successfully.
+2025-05-16 12:10:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:10:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:10:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:10:22 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:46 - ERROR - No Arduino device detected.
+2025-05-16 12:11:46 - ERROR - No Arduino device detected.
+2025-05-16 12:11:46 - INFO - Application started
+2025-05-16 12:11:46 - INFO - Application started
+2025-05-16 12:11:46 - INFO - Application started
+2025-05-16 12:11:47 - INFO - Database initialized and checked successfully.
+2025-05-16 12:11:47 - INFO - Database initialized and checked successfully.
+2025-05-16 12:11:47 - INFO - Database initialized and checked successfully.
+2025-05-16 12:11:51 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:51 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:51 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:51 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:53 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:53 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:53 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:53 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:55 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:55 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:55 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:55 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:56 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:56 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:56 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:56 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:11:57 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:57 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:57 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:11:57 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:08 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:08 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:08 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:08 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:09 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:09 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:09 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:09 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:11 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:11 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:11 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:11 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:12 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:12 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:12 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:12 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:13 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:13 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:13 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:13 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:14 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:14 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:14 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:14 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:16 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'reset'
+2025-05-16 12:12:17 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:17 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:17 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:12:17 - ERROR - Error resetting Arduino connection: 'NoneType' object has no attribute 'is_connected'
+2025-05-16 12:13:58 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:13:58 - INFO - Arduino detected on port: /dev/cu.usbmodem11201
+2025-05-16 12:14:00 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:14:00 - INFO - Connected to Arduino on port /dev/cu.usbmodem11201
+2025-05-16 12:14:01 - INFO - Application started
+2025-05-16 12:14:01 - INFO - Application started
+2025-05-16 12:14:01 - INFO - Application started
+2025-05-16 12:14:01 - INFO - Database initialized and checked successfully.
+2025-05-16 12:14:01 - INFO - Database initialized and checked successfully.
+2025-05-16 12:14:01 - INFO - Database initialized and checked successfully.
+2025-05-16 12:14:18 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 12:14:18 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 12:14:18 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
+2025-05-16 12:14:18 - ERROR - Error resetting Arduino connection: (6, 'Device not configured')
