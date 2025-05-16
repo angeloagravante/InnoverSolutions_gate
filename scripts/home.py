@@ -1,11 +1,13 @@
 import tkinter as tk
 import scripts.arduino_module as arduino_module
 import scripts.logger as logger
+import threading
+import resources
 
 #from arduino_module import *
 from exceptions_class import *
-import threading
 from scripts.database import *
+from resources import *
 
 log = Logger()  # Create an instance of the Logger
 db = DatabaseManager()  # Create an instance of the DatabaseManager
@@ -59,7 +61,7 @@ def home(parent):
     parent.grid_propagate(False)
 
     # Add a label on the top
-    tk.Label(parent, text="Welcome to Main Section", font=("Arial", 16)).grid(row=0, column=0, columnspan=3, pady=5)
+    tk.Label(parent, text="Welcome to Main Section", font=("Arial", 16),bg=MAINCONTENT_BG).grid(row=0, column=0, columnspan=3, pady=5)
 
     def button_action(row, col):
         if row == 1 and col == 1:  # Override button
@@ -76,52 +78,98 @@ def home(parent):
 
         Arduino.reset()  # Reset the Arduino connection
 
-        # Clear the parent frame and display override content
+
+        # Clear the parent frame and display entrance and exit buttons
         for widget in parent.winfo_children():
             widget.destroy()
+            tk.Label(parent, text="Select Gate to Override", font=("Arial", 16),bg=MAINCONTENT_BG).grid(row=0, column=0, columnspan=2, pady=5)
 
-        # Add override content to the main content area
-        tk.Label(parent, text="Scan your RFID", font=("Arial", 14)).grid(row=0, column=0, columnspan=3, pady=20)
-        # Add an RFID image
-        rfid_image = tk.PhotoImage(file="images/wifi.png")  # Replace with the actual path to your RFID image
-        resized_image = rfid_image.subsample(2, 2)  # Adjust the subsample values to resize the image
-        rfid_label = tk.Label(parent, image=resized_image)
-        rfid_label.image = resized_image  # Keep a reference to avoid garbage collection
-        rfid_label.grid(row=1, column=0, columnspan=3, pady=10)
-        # tk.Button(parent, text="Back", command=lambda: home(parent)).grid(row=2, column=1, columnspan=1, pady=10)
+            # Create a frame to center the buttons
+            button_frame = tk.Frame(parent)
+            button_frame.grid(row=1, column=0, columnspan=2, pady=20)
 
-        # Use a separate thread to read RFID data from the Arduino
-        def read_rfid():
-            if Arduino:
-                try:
-                    # Read RFID data from the Arduino
-                    rfid_data = Arduino.read_rfid()
-                    if rfid_data:
-                        print(f"RFID: {rfid_data}")
-                        # Process the scanned RFID data here
+            for row in range(1):
+                for col in range(2):
+                    labels = [["Entrance", "Exit"]]
+
+                    # Create 2 buttons for exit and entrance with larger size
+                    btn = tk.Button(
+                        button_frame,
+                        text=labels[row][col],
+                        font=("Arial", 14, "bold"),  # Increase font size
+                        bg=MAINCONTENT_BG,
+                        fg="black",  # Change text color for better visibility
+                        width=15,  # Set button width
+                        height=10,  # Set button height
+                        command=lambda r=row, c=col: show_rfid_screen(r+1, c+1)
+                    )
+                    btn.grid(row=row, column=col, padx=10, pady=10, sticky="nsew")
+
+            # Configure grid weights to make buttons expand equally within the frame
+            for i in range(2):  # 1 row
+                button_frame.grid_rowconfigure(i, weight=1)
+            for j in range(2):  # 2 columns
+                button_frame.grid_columnconfigure(j, weight=1)
+
+        # Configure parent grid to center the button frame
+        parent.grid_rowconfigure(1, weight=1)
+        parent.grid_columnconfigure(0, weight=1)
+
+        def show_rfid_screen(row,col):
+            if row == 1 and col == 1:
+                rfid_screen()
+            elif row == 1 and col == 2:
+                rfid_screen()
+    
+
+        def rfid_screen():
+            for widget in parent.winfo_children():
+                widget.destroy()
+
+            Arduino.reset()
+
+            # Add override content to the main content area
+            tk.Label(parent, text="Scan your RFID", font=("Arial", 14)).grid(row=0, column=0, columnspan=3, pady=20)
+            # Add an RFID image
+            rfid_image = tk.PhotoImage(file="images/wifi.png")  # Replace with the actual path to your RFID image
+            resized_image = rfid_image.subsample(2, 2)  # Adjust the subsample values to resize the image
+            rfid_label = tk.Label(parent, image=resized_image)
+            rfid_label.image = resized_image  # Keep a reference to avoid garbage collection
+            rfid_label.grid(row=1, column=0, columnspan=3, pady=10)
+            # tk.Button(parent, text="Back", command=lambda: home(parent)).grid(row=2, column=1, columnspan=1, pady=10)
+
+            # Use a separate thread to read RFID data from the Arduino
+            def read_rfid():
+                if Arduino:
+                    try:
+                        # Read RFID data from the Arduino
+                        rfid_data = Arduino.read_rfid()
                         if rfid_data:
-                                if db.user_exists(rfid_data):
-                                    Arduino.send_data(Arduino.OPEN_GATE)  # Send a response to Arduino
-                                    Message = f"User {rfid_data} authorized."
-                                    Arduino.reset()  # Reset the Arduino connection
-                                else:
-                                    print("User not found in the database.")
-                                    Message = f"User {rfid_data} unauthorized."
+                            print(f"RFID: {rfid_data}")
+                            # Process the scanned RFID data here
+                            if rfid_data:
+                                    if db.user_exists(rfid_data):
+                                        Arduino.send_data(Arduino.OPEN_GATE)  # Send a response to Arduino
+                                        Message = f"User {rfid_data} authorized."
+                                        Arduino.reset()  # Reset the Arduino connection
+                                    else:
+                                        print("User not found in the database.")
+                                        Message = f"User {rfid_data} unauthorized."
 
-                    elif not rfid_data:
-                        Message = "RFID scan failed. Please try again."
-                        
-                    # Display the message on the screen
-                    tk.Label(parent, text=Message, font=("Arial", 12)).grid(row=3, column=0, columnspan=3, pady=10)
-                    parent.after(2000, lambda: home(parent))  # Return to home after 2 seconds
-                except SerialTimeoutError as e:
-                    print(f"Timeout error while reading RFID: {e}")
-                except Exception as e:
-                    print(f"Error reading RFID: {e}")
-            else:
-                print("Arduino is not connected. Cannot read RFID.")
+                        elif not rfid_data:
+                            Message = "RFID scan failed. Please try again."
+                            
+                        # Display the message on the screen
+                        tk.Label(parent, text=Message, font=("Arial", 12)).grid(row=3, column=0, columnspan=3, pady=10)
+                        parent.after(2000, lambda: home(parent))  # Return to home after 2 seconds
+                    except SerialTimeoutError as e:
+                        print(f"Timeout error while reading RFID: {e}")
+                    except Exception as e:
+                        print(f"Error reading RFID: {e}")
+                else:
+                    print("Arduino is not connected. Cannot read RFID.")
 
-        threading.Thread(target=read_rfid, daemon=True).start()
+            threading.Thread(target=read_rfid, daemon=True).start()
 
     def passing_through_action():
         print("Passing Through button clicked")

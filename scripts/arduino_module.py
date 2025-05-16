@@ -39,7 +39,7 @@ class Arduino:
 
         def establish_connection():
             try:
-                self.connection = serial.Serial(self.port, self._baud_rate, timeout=self.timeout)
+                self._connection = serial.Serial(self.port, self._baud_rate, timeout=self.timeout)
                 time.sleep(2)  # Wait for the connection to establish
                 self._is_connected = True  # Set is_connected to True
                 #print("Arduino connected successfully.")
@@ -52,18 +52,18 @@ class Arduino:
             
 
     def send_data(self, data):
-        if self.connection and self.connection.is_open:
-            self.connection.flush()
-            self.connection.write(data.encode())
+        if self._connection and self._connection.is_open:
+            self._connection.flush()
+            self._connection.write(data.encode())
             print(f"Sent data: {data}")
         else:
             print("Connection is not open. Cannot send data.")
 
     def receive_data(self, timeout=5):
-        if self.connection and self.connection.is_open:
+        if self._connection and self._connection.is_open:
             start_time = time.time()
             while True:
-                data = self.connection.readline().decode().strip()
+                data = self._connection.readline().decode().strip()
                 if data:
                     if data:
                         self.reset()
@@ -79,14 +79,14 @@ class Arduino:
             return None
     
     def reset(self):
-        if self.connection and self.connection.is_open:
-            self.connection.reset_input_buffer()
-            self.connection.reset_output_buffer()
+        if self._connection and self._connection.is_open:
+            self._connection.reset_input_buffer()
+            self._connection.reset_output_buffer()
 
     def close(self):
-        if self.connection and self.connection.is_open:
-            self.connection.close()
-            self.is_connected = False  # Set is_connected to False when closed
+        if self._connection and self._connection.is_open:
+            self._connection.close()
+            self._is_connected = False  # Set is_connected to False when closed
             print("Connection closed.")
 
 
