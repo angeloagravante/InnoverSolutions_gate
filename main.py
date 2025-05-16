@@ -5,11 +5,13 @@ import queue
 import exceptions_class as ex
 import scripts.database as database
 
-from tkinter import messagebox  # Import messagebox for error dialogs
+from tkinter import messagebox, ttk # Import messagebox for error dialogs
 from scripts.user_management import *  # Import user class
 from scripts.home import home  # Import the home function
 from scripts.logger import *
 from scripts.arduino_module import Arduino
+from resources import *
+from keyboard.keyboard import VirtualKeyboard  # Import the virtual keyboard class
 
 
 # Function to verify login
@@ -34,38 +36,50 @@ def show_dashboard():
     dashboard_frame.pack(fill="both", expand=True)
 
     # Sidebar Frame
-    sidebar = tk.Frame(dashboard_frame, width=150, height=400)
+    sidebar = tk.Frame(dashboard_frame, width=150, height=400, bg=SECTION_BG)
     sidebar.pack(side="left", fill="y")
 
     # Main Content Area
-    content_frame = tk.Frame(dashboard_frame, width=450, height=400)
+    content_frame = tk.Frame(dashboard_frame, width=450, height=400, bg=MAINCONTENT_BG)
     content_frame.pack(side="right", fill="both", expand=True)
 
     # Sidebar Buttons
     sections = ["Home", "Profile", "Settings"]
 
+    style = ttk.Style()
+    style.theme_use("clam")
+    style.configure("Flat.TButton",
+                    relief="flat",
+                    borderwidth=0,
+                    #padding=10,
+                    background=MAINCONTENT_BG,
+                    foreground="black")
+    style.map("Flat.TButton",
+            background=[('active', '#2980b9')],
+            foreground=[('disabled', '#cccccc')])
+
     for section in sections:
-        btn = tk.Button(
+        btn = ttk.Button(
             sidebar, 
             text=section, 
-            fg="black", 
-            bg="black",
-            font=("Arial", 12),
+            style="Flat.TButton",
             command=lambda s=section: show_content(s)  # Dynamically pass section
         )
-        btn.pack(fill="x", pady=5, padx=10)        
+        btn.pack(fill="x", pady=5, padx=5)
+        #btn.pack(pady=20, padx=20)
         
         if section == "Settings":
             btn.configure(command=settings)
 
 
     # Logout Button (placed at the bottom of the sidebar)
-    logout_btn = tk.Button(
+    logout_btn = ttk.Button(
         sidebar, 
         text="Logout", 
-        fg="black", 
-        bg="black", 
-        font=("Arial", 12), 
+        style="Flat.TButton",
+        # fg="black", 
+        # bg=SECTION_BG, 
+        # font=("Arial", 12), 
         command=logout
     )
     logout_btn.pack(side="bottom", fill="x", pady=5, padx=10)
@@ -83,7 +97,7 @@ def show_content(section):
     if section == "Home":
         home(content_frame)  # Pass content_frame as parent to home function
     else:
-        label = tk.Label(content_frame, text=f"Welcome to {section}", font=("Arial", 16), bg="white")
+        label = tk.Label(content_frame, text=f"Welcome to {section}", font=("Arial", 16),background="#ECF0F1")
         label.pack(pady=50)
 
 # Function to logout
@@ -164,6 +178,24 @@ def login_screen():
     entry_password.insert(0, "admin")  # Auto-populate with "admin"
     entry_password.pack(pady=5)
 
+    # # Create a frame for the keyboard
+    # keyboard = VirtualKeyboard(login_frame, entry_username)  # Pass the entry widget to the keyboard
+    # keyboard_frame = tk.Frame(login_frame)
+    # keyboard_frame.pack(pady=10)
+
+    # # Bind the keyboard to the entry widgets
+    # entry_password.bind("<FocusIn>", lambda _: keyboard.show())  # Show keyboard when entry is focused
+    # entry_password.bind("<FocusOut>", lambda _: keyboard.hide())  # Hide keyboard when entry loses focus
+
+    # entry_username.bind("<FocusIn>", lambda _: keyboard.show())  # Show keyboard when entry is focused
+    # entry_username.bind("<FocusOut>", lambda _: keyboard.hide())  # Hide keyboard when entry loses focus
+
+    # # Hide the keyboard when clicking outside
+    # def hide_keyboard(event):
+    #     if event.widget not in (entry_username, entry_password):
+    #         keyboard.hide()
+    # root.bind("<Button-1>", hide_keyboard)  # Hide keyboard on click outside
+
     def attempt_login():
         # Display loading GIF
         loading_label = tk.Label(login_frame)
@@ -234,7 +266,12 @@ def login_screen():
 # Create main window instance
 root = tk.Tk()
 root.title("Automatic Gate Boom Barrier System")
+root.configure(bg="#2C3E50")  # Match the background to your layout
 root.geometry("600x400")
+
+# Set the theme for the application
+#root.tk.call("source", TCL_THEME_PATH)
+#ttk.Style().theme_use(TCL_THEME)
 
 # create Instance of logger
 log = Logger()
